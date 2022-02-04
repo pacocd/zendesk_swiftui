@@ -7,6 +7,8 @@ target 'ZendeskDemo' do
   pod 'ZendeskAnswerBotSDK'
   pod 'ZendeskChatSDK'
   pod 'ZendeskSupportSDK'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
   # Pods for ZendeskDemo
 

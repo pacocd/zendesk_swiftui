@@ -10,11 +10,13 @@ import ZendeskCoreSDK
 import SupportProvidersSDK
 import AnswerBotProvidersSDK
 import ChatProvidersSDK
+import Firebase
 
 @main
 struct ZendeskDemoApp: App {
     init() {
         initializeZendesk()
+        initializeFirebase()
     }
 
     var body: some Scene {
@@ -30,6 +32,10 @@ struct ZendeskDemoApp: App {
 
     private func getUserEmail() -> String {
         return UserDefaults.standard.string(forKey: "user.email") ?? ""
+    }
+
+    func initializeFirebase() {
+        FirebaseApp.configure()
     }
 
     func initializeZendesk() {
