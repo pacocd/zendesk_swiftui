@@ -6,13 +6,23 @@
 //
 
 import SwiftUI
+import ZendeskCoreSDK
 import MessagingSDK
 import AnswerBotSDK
 import ChatSDK
 import SupportSDK
 
 struct ZendeskView: UIViewControllerRepresentable {
-    var user: String
+    var name: String
+    var email: String
+
+    init(name: String, email: String) {
+        self.name = name
+        self.email = email
+
+        let identity = Identity.createAnonymous(name: name, email: email)
+        Zendesk.instance?.setIdentity(identity)
+    }
 
     func makeCoordinator() -> Coordinator {
         return Coordinator(self)

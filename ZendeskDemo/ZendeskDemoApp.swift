@@ -19,8 +19,17 @@ struct ZendeskDemoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(name: getUserName(),
+                        email: getUserEmail())
         }
+    }
+
+    private func getUserName() -> String {
+        return UserDefaults.standard.string(forKey: "user.name") ?? ""
+    }
+
+    private func getUserEmail() -> String {
+        return UserDefaults.standard.string(forKey: "user.email") ?? ""
     }
 
     func initializeZendesk() {
@@ -30,7 +39,5 @@ struct ZendeskDemoApp: App {
         Support.initialize(withZendesk: Zendesk.instance)
         AnswerBot.initialize(withZendesk: Zendesk.instance, support: Support.instance!)
         Chat.initialize(accountKey: "Jc3jhADf553AHRniLK8GyrTomWAU7pKy")
-        let identity = Identity.createAnonymous(name: "Paco", email: "paco@michelada.io")
-        Zendesk.instance?.setIdentity(identity)
     }
 }
